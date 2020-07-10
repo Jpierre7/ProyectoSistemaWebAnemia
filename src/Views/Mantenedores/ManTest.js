@@ -175,6 +175,10 @@ class ManTest extends Component {
                             <h1>Lista de Alimentos</h1>
                         </div>
                         <div className="card-body">
+                            
+                    <Button variant="contained" color="secondary" onClick={this.openOrCloseModal}>
+                        Agregar
+                    </Button>
                         <table className="table table-responsive">
                         <thead>
                             <tr>
@@ -189,9 +193,6 @@ class ManTest extends Component {
                             {this.state.data.map(f => <AlimentoItem key={f.idcomida} comida={f} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} />)}
                         </tbody>
                     </table>
-                    <Button variant="contained" color="secondary" onClick={this.openOrCloseModal}>
-                        Agregar
-        </Button>
                         </div>
                     </div>
                 </>
