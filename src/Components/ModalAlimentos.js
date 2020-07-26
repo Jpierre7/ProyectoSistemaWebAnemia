@@ -9,12 +9,12 @@ function ModalAlimentos(props) {
         {props.isEdit ? 'EDITAR ALIMENTO' : 'NUEVO ALIMENTO'}
       </DialogTitle>
       <DialogContent>
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} style={{width:500}}>
           <input type="text" placeholder="Nombre De Comida" className="form-control" name="nombre" value={props.alimento.nombre} onChange={props.handleChange} required />
           <br/>
-          <textarea placeholder="Ingredientes" className="form-control" name="ingredientes" value={props.alimento.ingredientes} onChange={props.handleChange} rows="1" required />
+          <textarea placeholder="Ingredientes" className="form-control" name="ingredientes" value={props.alimento.ingredientes} onChange={props.handleChange} rows="8" required />
           <br/>
-          <textarea placeholder="Preparacion" className="form-control" name="preparacion" value={props.alimento.preparacion} onChange={props.handleChange} rows="1" required />
+          <textarea placeholder="Preparacion" className="form-control" name="preparacion" value={props.alimento.preparacion} onChange={props.handleChange} rows="8" required />
           <br/>
           <input type="number" placeholder="Edad Rango" className="form-control" name="edad_rango" value={props.alimento.edad_rango} onChange={props.handleChange} required />
           <br/>
