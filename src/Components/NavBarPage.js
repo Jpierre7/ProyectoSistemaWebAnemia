@@ -60,6 +60,39 @@ function NavBarPage(props) {
               <Avatar style={{padding:"5px"}}>{`${props.user.nombres[0]}${props.user.apellidoPaterno[0]}`}</Avatar>
             </IconButton>
           </ToolBar>
+          <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+          >
+            <Card>
+                            <CardContent>
+                                <div>
+                                    <div>
+                                    <Avatar>
+                                    {`${props.user.nombres[0]}${props.user.apellidoPaterno[0]}`}
+                                    </Avatar>
+                                    </div>
+                                    <div>
+                                        <Typography>{`${props.user.nombres} ${props.user.apellidoPaterno}`}</Typography>
+                                    </div>
+                                </div>
+                            </CardContent>
+                            <CardActions >  
+                                {/* {/* <Button variant='outlined' className={classes.button} onClick={handleAddAccount} >Agregar Cuenta</Button> */}
+                                 {/* {/* <div></div> */}
+                                <Button variant='outlined' onClick={props.handleLogout} >Salir</Button>
+                            </CardActions>
+                        </Card>
+          </Popover>
         </AppBar>
         {/* <AppBar position="static">
           <ToolBar>

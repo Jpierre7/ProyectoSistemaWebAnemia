@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom'
 import Context from "../../Components/Context";
 import NavBarPage from '../../Components/NavBarPage';
 import Sidebar from '../../Components/Sidebar'
-import ResponsiveDrawer from '../../Components/ejemplo';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 const useStyles = theme => ({
   root: {
