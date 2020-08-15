@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
-
+import {Link, Redirect, withRouter} from 'react-router-dom'
 
 function ModalAlimentos(props) {
   return (
@@ -17,6 +17,8 @@ function ModalAlimentos(props) {
           <textarea placeholder="Preparacion" className="form-control" name="preparacion" value={props.alimento.preparacion} onChange={props.handleChange} rows="8" required />
           <br/>
           <input type="number" placeholder="Edad Rango" className="form-control" name="edad_rango" value={props.alimento.edad_rango} onChange={props.handleChange} required />
+          <br/>
+          <input type="file" className="form-control" placeholder="Agregue Imagen" name="ruta" value={props.imgruta} onChange={props.handleChangeImage}/>
           <br/>
           <select className="form-control" value={props.alimento.tipoalimento} onChange={props.handleChange} name="tipoalimento" required>
             <option value=''>-----SELECCIONE-----</option>
