@@ -43,6 +43,7 @@ class ManTest extends Component {
                 edad_rango: 0,
                 idtipo_anemia_FK: 0,
                 tipoalimento: 0,
+                inactivo: 0
             },
             openModal: !this.state.openModal,
             isEdit: false,
@@ -65,7 +66,8 @@ class ManTest extends Component {
                 preparacion: alimento.preparacion,
                 edad_rango: alimento.edad_rango,
                 idtipo_anemia_FK: alimento.idtipo_anemia_FK,
-                tipoalimento: alimento.tipoalimento
+                tipoalimento: alimento.tipoalimento,
+                inactivo: alimento.inactivo
             },
             isEdit: true
             
@@ -129,10 +131,15 @@ class ManTest extends Component {
 
             })
             .then(response => response.json())
-.catch(error => console.error('Error:', error))
-.then(response => console.log('Success:', response));
-            this.openOrCloseModal();
-            this.getFamiliares();
+            .then(response => {
+                this.openOrCloseModal();
+                this.getFamiliares();
+              })
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
+            
+            
+            
             // this.props.history.go(0);
             console.log("ME", data);
 
@@ -160,17 +167,21 @@ class ManTest extends Component {
                 })
                 // console.log("RESPONSE", response.json());
             */
-           fetch('http://tesisanemia.000webhostapp.com/TesisAnemia2/JSonInsertAlimentoPOST.php', {
-  method: 'POST',
-  body: data
-})
-.then(response => response.json())
-.catch(error => console.error('Error:', error))
-.then(response => console.log('Success:', response));
-
-                //const registro=response;
+            fetch('http://tesisanemia.000webhostapp.com/TesisAnemia2/JSonInsertAlimentoPOST.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(response => {
                 this.openOrCloseModal();
                 this.getFamiliares();
+              })
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
+
+                //const registro=response;
+                //this.openOrCloseModal();
+                //this.getFamiliares();
                 // this.props.history.push('/manAlimento')
                 // this.props.history.go(0);
                 //console.log("ME", registro);
@@ -178,20 +189,21 @@ class ManTest extends Component {
     }
     handleEliminar = async (alimento) => {
         Swal.fire({
-            title: '¿Desea Desactivar el alimento: '+ alimento.nombre+'?',
-            text: "Este registro se desactivará!",
+            title: ( alimento.inactivo == 1 ? '¿Desea Activar el alimento: ':'¿Desea Desactivar el alimento: ')+ alimento.nombre+'?',
+            text:  alimento.inactivo == 1 ? 'Este registro se Activará!': 'Este registro se Desactivará!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, desactivar!',
+            confirmButtonText:  alimento.inactivo == 1 ? 'Si, Activar!' : 'Si, desactivar!' ,
             cancelButtonText: 'Cancelar'
           }).then(async(result) => {
             if (result.value) {
                 const aliment = {
                     alimento: {
                         //...this.state.alimento,
-                        idalimento: alimento.idalimento
+                        idalimento: alimento.idalimento,
+                        inactivo: alimento.inactivo
                     }
                 };
         
@@ -205,7 +217,7 @@ class ManTest extends Component {
         
                 })
                 const data = await response.json();
-                //this.getFamiliares();
+                this.getFamiliares();
                 // this.props.history.go(0);
                 console.log("ME", data);
             }
@@ -225,19 +237,21 @@ class ManTest extends Component {
                         Agregar
                     </Button>
                         <table className="table table-responsive">
-                        <thead>
-                            <tr>
-                                <th>Nombre de comida</th>
-                                <th>Ingredientes</th>
-                                <th>Preparacion</th>
-                                <th>Tipo Alimento</th>
-                                <th>Imagen plato</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.data.map(f => <AlimentoItem key={f.idcomida} comida={f} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} />)}
-                        </tbody>
-                    </table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Ingredientes</th>
+                                    <th>Preparación</th>
+                                    <th>Tipo Alimento</th>
+                                    <th>Imagen</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.data.map(f => <AlimentoItem key={f.idcomida} comida={f} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} />)}
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </>

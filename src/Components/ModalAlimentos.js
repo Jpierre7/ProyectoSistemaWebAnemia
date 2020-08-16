@@ -40,7 +40,7 @@ function ModalAlimentos(props) {
             <option value={9}>Ferropenica</option>
           </select>
           <DialogActions>
-            <input type="button" className="btn btn-secondary" onClick={props.openOrCloseModal} value="Cancel" />
+            <input type="button" className="btn btn-secondary" onClick={props.openOrCloseModal} value="Cancelar" />
             <input type="submit" className="btn btn-primary" value={props.isEdit ? 'Editar' : 'Guardar'} />
           </DialogActions>
         </form>
