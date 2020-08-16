@@ -33,6 +33,12 @@ class ManTest extends Component {
         })
     }
 
+    CloseModal = () => {
+        this.setState({
+            openModal: !this.state.openModal
+        })
+    }
+
     openOrCloseModal = () => {
         this.setState({
             alimento: {
@@ -132,7 +138,7 @@ class ManTest extends Component {
             })
             .then(response => response.json())
             .then(response => {
-                this.openOrCloseModal();
+                this.CloseModal();
                 this.getFamiliares();
               })
             .catch(error => console.error('Error:', error))
@@ -173,7 +179,7 @@ class ManTest extends Component {
             })
             .then(response => response.json())
             .then(response => {
-                this.openOrCloseModal();
+                this.CloseModal();
                 this.getFamiliares();
               })
             .catch(error => console.error('Error:', error))
@@ -257,7 +263,7 @@ class ManTest extends Component {
                 </>
                 <ModalAlimentos alimento={this.state.alimento}
                     open={this.state.openModal}
-                    openOrCloseModal={this.openOrCloseModal}
+                    openOrCloseModal={this.CloseModal}
                     isEdit={this.state.isEdit}
                     handleChange={this.handleChange}
                     handleChangeImage={this.handleChangeImage}
