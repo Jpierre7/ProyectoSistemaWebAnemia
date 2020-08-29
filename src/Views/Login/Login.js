@@ -55,12 +55,10 @@ class Login extends Component{
       const data = await response.json();
       this.setState({loading:false});
       const exist = data.usuario ? true : false;
-      const tipousuario = data.usuario[0].tipousuario;
-      
+      console.log("Data", data.usuario);
       console.log("existe", exist);
-      console.log("tipousuario", tipousuario);
       if(exist){
-        
+        const tipousuario = data.usuario[0].tipousuario;
         if(tipousuario==='A'){
         const { idfamiliar, apellido_materno, apellido_paterno, nombres } = data.usuario[0]
         this.context.login({
@@ -72,6 +70,7 @@ class Login extends Component{
         
         this.props.history.push('/dashboard')
         } else{
+          console.log("me");
           this.setState({errorMessage:"No es administrador"})
           this.setState({username:"", password:""});
         }

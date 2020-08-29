@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.up('sm')]: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
+        background:'orange'
       },
     },
     menuButton: {
@@ -55,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
       toolbar: theme.mixins.toolbar,
       drawerPaper: {
         width: drawerWidth,
+      },
+      color:{
+        background: 'red',
       },
       content: {
         flexGrow: 1,
@@ -110,14 +114,14 @@ function Sidebar(props) {
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            // container={container}
+            // variant="temporary"
+            // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={props.open}
             onClose={props.openDrawer}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
+            // classes={{
+            //   paper: classes.drawerPaper,
+            // }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}

@@ -6,15 +6,19 @@ import Man_Familiar from './Views/Mantenedores/Man_Familiar'
 import Man_Alimento from './Views/Mantenedores/Man_Alimento'
 import ManTest from './Views/Mantenedores/ManTest'
 
+import Ejemplo from './Views/Ejemplo'
+
 class Rutas extends Component {
   render() {
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Login} />
+          {/* <Route exact path="/manAlimento" component={ManTest} /> */}
           <Dashboard>
             <Switch>
               {/* <Route exact path="/dashboard" component={Dashboard} /> */}
+          {/* <Route exact path="/ejemplo" component={Ejemplo}/> */}
               <Route exact path="/manFamiliar" component={Man_Familiar} />
               {/* <Route exact path="/manAlimento" component={Man_Alimento} /> */}
               <Route exact path="/manAlimento" component={ManTest} />

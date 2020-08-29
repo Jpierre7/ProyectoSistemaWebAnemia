@@ -1,0 +1,17 @@
+.root{
+    display:flex
+}
+.content{
+    flex-grow: 1;
+    height: 100vh;
+    overflow: auto;
+    
+}
+.container{
+    padding-top: 80px;
+    padding-bottom: 32px;
+    /* background:white; */
+}
+.toolbar{
+    min-height: 500px;
+}

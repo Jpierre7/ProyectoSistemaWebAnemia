@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core'
 import AlimentoList from "../../Components/AlimentosList"
 import ModalAlimentos from '../../Components/ModalAlimentos'
 import AlimentoItem from '../../Components/AlimentoItem'
-
+import Ejemplo from '../../Components/EjemploLista'
 import Swal from 'sweetalert2'
 class ManTest extends Component {
     state = {
@@ -230,9 +230,10 @@ class ManTest extends Component {
           })
     }
     render() {
+        //const { comida: data } = this.state.data
         return (
             <Fragment>
-                <>
+                {/* <>
                     <div className="card">
                         <div style={{backgroundColor:"#b02a2a"}} className="card-header  text-white" >
                             <h1>Lista de Alimentos</h1>
@@ -260,7 +261,8 @@ class ManTest extends Component {
                         </table>
                         </div>
                     </div>
-                </>
+                </> */}
+                <Ejemplo data={this.state.data || []} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} /> 
                 <ModalAlimentos alimento={this.state.alimento}
                     open={this.state.openModal}
                     openOrCloseModal={this.CloseModal}
