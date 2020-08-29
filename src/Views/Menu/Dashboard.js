@@ -4,6 +4,9 @@ import Context from "../../Components/Context";
 import NavBarPage from '../../Components/NavBarPage';
 import Sidebar from '../../Components/Sidebar'
 import { withStyles, useTheme } from '@material-ui/core/styles';
+import ManTest from '../Mantenedores/ManTest'
+import './Layout.css'
+import {Container} from '@material-ui/core'
 const useStyles = theme => ({
   root: {
     display: 'flex',
@@ -39,7 +42,7 @@ class Dashboard extends Component {
 
     return (
       <>
-      {/* <div style={{display:'flex'}}> */}
+      <div className="root">
         <NavBarPage handleLogout={this.handleLogout} user={user} openDrawer={this.openDrawer}/>
         
         <Sidebar open={this.state.open} openDrawer={this.openDrawer}/>
@@ -49,14 +52,16 @@ class Dashboard extends Component {
       </main> */}
         {/* <ResponsiveDrawer/> */}
         {/* <NavBarPage handleLogout={this.handleLogout} user={user}/> */}
-        <div className="container-fluid">
-          <div className="row">
-            <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-              {this.props.children}
-            </main>
+        <main className="content">
+          <div className="toolbar">
+          <Container maxWidth="lg" className="container">
+            {this.props.children}
+
+          </Container>
+
           </div>
+        </main>
         </div>
-        {/* </div> */}
       </>
     )
   }

@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    background:'#D83410'
+  },
+  avatar:{
+    color:'#D83410',
+    background:'white'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -57,7 +62,7 @@ function NavBarPage(props) {
               HIERRO HEARTH 
             </Typography>
             <IconButton onClick={handleClick}>
-              <Avatar style={{padding:"5px"}}>{`${props.user.nombres[0]}${props.user.apellidoPaterno[0]}`}</Avatar>
+              <Avatar className={classes.avatar} style={{padding:"5px"}}>{`${props.user.nombres[0]}${props.user.apellidoPaterno[0]}`}</Avatar>
             </IconButton>
           </ToolBar>
           <Popover
@@ -77,7 +82,7 @@ function NavBarPage(props) {
                             <CardContent>
                                 <div>
                                     <div>
-                                    <Avatar>
+                                    <Avatar className={classes.avatar}>
                                     {`${props.user.nombres[0]}${props.user.apellidoPaterno[0]}`}
                                     </Avatar>
                                     </div>
