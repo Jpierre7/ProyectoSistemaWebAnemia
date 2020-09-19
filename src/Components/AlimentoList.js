@@ -1,5 +1,4 @@
 import React from 'react'
-import AlimentoItem from './AlimentoItem'
 import {Button} from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
@@ -30,6 +29,7 @@ function EjemploLista(props){
             // maxWidth:'200px',
             wrap: true,
         },
+
         {
             name:'Preparacion',
             selector: 'preparacion',
@@ -39,13 +39,16 @@ function EjemploLista(props){
         },
         {
             name:'Estado',
-            selector: 'inactivo',
+            // selector: 'inactivo',
+        cell: row =><p>{row.inactivo==0?"Activo":"Inactivo"}</p>,
             sortable: true ,
+            wrap: true,
         },
         {
             name:'Imagen',
             cell: row =><img src={row.ruta} width='100px' height='100px'/>, 
             sortable: true ,
+            wrap: true,
         },
         {
             name:"Opciones",
@@ -70,6 +73,7 @@ function EjemploLista(props){
             </IconButton>
             </ButtonGroup>
             ,
+            wrap: true,
           
             // width:'130px',
         },
@@ -84,27 +88,30 @@ function EjemploLista(props){
             background: '#D2664E',
             color: 'white'
         },
+        
         }
     ]
     const paginacionUpdate={
         
     }
+    const agregar=(<Button onClick={()=>{props.abrirModal()}} variant="contained" color="secondary">Agregar</Button>)
     console.log("Datos:", props.data);
     return(
         <>
-        {/* <Button>Agregar</Button>
-        <Button>Exportar</Button> */}
+        {/* <Button>Agregar</Button> */}
+        {/* <Button>Exportar</Button> */}
         <DataTable
             title="Alimento"
             data={props.data}
-            subHeaderWrap
-            responsive
+            // subHeaderWrap
+            // responsive
             onRowDoubleClicked={props.getAlimento}
             conditionalRowStyles={condicionalActivo}
             paginationRowsPerPageOptions={[5, 10, 25, 50, 100]}
             // width="20%"
             // data={props.data.map(f => <AlimentoItem key={f.idcomida} comida={f.nombre} getAlimento={props.getAlimento} />)}
             columns={columnasTable}
+            actions={agregar}
             pagination
         />
         </>

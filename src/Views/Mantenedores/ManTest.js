@@ -1,10 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { Button } from '@material-ui/core'
 
-import AlimentoList from "../../Components/AlimentosList"
+import AlimentoList from "../../Components/AlimentoList"
 import ModalAlimentos from '../../Components/ModalAlimentos'
-import AlimentoItem from '../../Components/AlimentoItem'
-import Ejemplo from '../../Components/EjemploLista'
 import Swal from 'sweetalert2'
 class ManTest extends Component {
     state = {
@@ -262,7 +260,11 @@ class ManTest extends Component {
                         </div>
                     </div>
                 </> */}
-                <Ejemplo data={this.state.data || []} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} /> 
+                {/* <Button variant="contained" color="secondary" onClick={this.openOrCloseModal}>
+                        Agregar
+                    </Button> */}
+                {/* <AlimentoList/> */}
+                <AlimentoList data={this.state.data || []} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} abrirModal={this.openOrCloseModal}/> 
                 <ModalAlimentos alimento={this.state.alimento}
                     open={this.state.openModal}
                     openOrCloseModal={this.CloseModal}

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './Views/Login/Login'
 import Dashboard from './Views/Menu/Dashboard'
 import Man_Familiar from './Views/Mantenedores/Man_Familiar'
-import Man_Alimento from './Views/Mantenedores/Man_Alimento'
+// import Man_Alimento from './Views/Mantenedores/Man_Alimento'
 import ManTest from './Views/Mantenedores/ManTest'
 
 import Ejemplo from './Views/Ejemplo'
