@@ -4,6 +4,7 @@ import Context from "../../Components/Context";
 import NavBarPage from '../../Components/NavBarPage';
 import Sidebar from '../../Components/Sidebar'
 import { withStyles, useTheme } from '@material-ui/core/styles';
+import AlimentoList from '../../Components/AlimentoList'
 import ManTest from '../Mantenedores/ManTest'
 import './Layout.css'
 import {Container} from '@material-ui/core'

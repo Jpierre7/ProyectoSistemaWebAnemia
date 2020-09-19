@@ -8,8 +8,9 @@
     
 }
 .container{
-    padding-top: 80px;
+    padding-top: 100px;
     padding-bottom: 32px;
+    background: white;
     /* background:white; */
 }
 .toolbar{
