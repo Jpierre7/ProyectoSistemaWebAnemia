@@ -1,12 +1,14 @@
 import React, { Fragment, Component } from 'react';
 import { Button } from '@material-ui/core'
-
+import ModalDetalle from '../../Components/ModalDetalle'
 import AlimentoList from "../../Components/AlimentoList"
 import ModalAlimentos from '../../Components/ModalAlimentos'
 import Swal from 'sweetalert2'
 class ManTest extends Component {
     state = {
         data: [],
+        typeAnemia: [],
+        edadrango: [],
         alimento: {
             idalimento: 0,
             nombre: '',
@@ -20,6 +22,7 @@ class ManTest extends Component {
         },
         imgruta: null,
         openModal: false,
+        openDetalle: false,
         isEdit: false,
         error: false,
         errorText: "",
@@ -36,7 +39,11 @@ class ManTest extends Component {
             openModal: !this.state.openModal
         })
     }
-
+    CloseModalAlimento = () => {
+        this.setState({
+            openDetalle: !this.state.openDetalle
+        })
+    }
     openOrCloseModal = () => {
         this.setState({
             alimento: {
@@ -56,7 +63,7 @@ class ManTest extends Component {
             validate: false
         })
     }
-
+    
     getAlimento = (alimento) => {
         console.log('Alimento:', alimento);
         this.openOrCloseModal();
@@ -77,6 +84,27 @@ class ManTest extends Component {
             
         })
     }
+    openOrCloseModalDetalle=()=>{
+        this.setState({
+            alimento: {
+                ingredientes: '',
+                preparacion: '',
+            },
+            openDetalle: !this.state.openDetalle,
+        })
+    }
+    detalleAlimento=(alimento)=>{
+        this.openOrCloseModalDetalle();
+        this.setState({
+            alimento: {
+                ...this.state.alimento,
+                idalimento: alimento.idalimento,
+                ingredientes: alimento.ingredientes,
+                preparacion: alimento.preparacion,
+            },
+            
+        })
+    }
     //EVENTO DE INGRESAR DATOS 
     getFamiliares = async () => {
         const response = await fetch('https://tesisanemia.000webhostapp.com/TesisAnemia2/JSonListAlimento2.php');
@@ -88,9 +116,30 @@ class ManTest extends Component {
         console.log("dataa", data)
         // this.setState({ data.comida })
     }
+    getTipoAnemia = async () => {
+        const response = await fetch('https://tesisanemia.000webhostapp.com/TesisAnemia2/JSonListTipoAnemia.php');
+        const typeAnemia = await response.json();
+        this.setState({
+            typeAnemia: typeAnemia.tipo_anemia,
+        })
 
+        console.log("test", typeAnemia)
+        // this.setState({ data.comida })
+    }
+    getEdadRango = async () => {
+        const response = await fetch('https://tesisanemia.000webhostapp.com/TesisAnemia2/JSonListRangoEdad.php');
+        const edadrango = await response.json();
+        this.setState({
+            edadrango: edadrango.rango_edad,
+        })
+
+        console.log("test", edadrango)
+        // this.setState({ data.comida })
+    }
     componentDidMount() {
         this.getFamiliares();
+        this.getTipoAnemia();
+        this.getEdadRango();
     }
     handleChange = (e) => {
         this.setState({
@@ -264,7 +313,13 @@ class ManTest extends Component {
                         Agregar
                     </Button> */}
                 {/* <AlimentoList/> */}
-                <AlimentoList data={this.state.data || []} getAlimento={this.getAlimento} handleEliminar={this.handleEliminar} abrirModal={this.openOrCloseModal}/> 
+                <AlimentoList 
+                    data={this.state.data || []} 
+                    getAlimento={this.getAlimento} 
+                    handleEliminar={this.handleEliminar} 
+                    abrirModal={this.openOrCloseModal}
+                    detalleAlimento={this.detalleAlimento}
+                /> 
                 <ModalAlimentos alimento={this.state.alimento}
                     open={this.state.openModal}
                     openOrCloseModal={this.CloseModal}
@@ -273,7 +328,14 @@ class ManTest extends Component {
                     handleChangeImage={this.handleChangeImage}
                     handleSubmit={this.handleAgregar}
                     error={this.state.error}
-                    errorText={this.state.errorText} />
+                    errorText={this.state.errorText}
+                    edadrango={this.state.edadrango || []}
+                    typeAnemia={this.state.typeAnemia || []}/>
+                <ModalDetalle 
+                    alimento={this.state.alimento}
+                    openDetalle={this.state.openDetalle}
+                    openOrCloseModalDetalle={this.CloseModalAlimento}
+                />
             </Fragment>
         )
     }

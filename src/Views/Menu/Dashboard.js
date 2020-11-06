@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import {  Redirect, withRouter } from 'react-router-dom'
 import Context from "../../Components/Context";
 import NavBarPage from '../../Components/NavBarPage';
 import Sidebar from '../../Components/Sidebar'
-import { withStyles, useTheme } from '@material-ui/core/styles';
-import AlimentoList from '../../Components/AlimentoList'
-import ManTest from '../Mantenedores/ManTest'
+// import { withStyles, useTheme } from '@material-ui/core/styles';
+// import AlimentoList from '../../Components/AlimentoList'
+// import ManTest from '../Mantenedores/ManTest'
 import './Layout.css'
 import {Container} from '@material-ui/core'
 const useStyles = theme => ({
@@ -35,12 +35,11 @@ class Dashboard extends Component {
   }
 
   render() {
-    const classes = this.props;
+    // const classes = this.props;
     const { user, autenticado } = this.context
 
-
-    if (!autenticado) return <Redirect to="/" />
-
+    if (!autenticado) return <Redirect to={{pathname: "/", state: {desde: this.props.location}}} />
+    
     return (
       <>
       <div className="root">
@@ -68,4 +67,4 @@ class Dashboard extends Component {
   }
 }
 
-export default withStyles(useStyles)(Dashboard);
+export default withRouter(Dashboard);

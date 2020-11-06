@@ -25,12 +25,16 @@ class Login extends Component{
   }
   componentDidMount(){  
     const user = localStorage.getItem("user");
-    this.setTimeoutId = setTimeout(() => {
-      this.setState({loading:false});
-    }, 2000);
+    // this.setTimeoutId = setTimeout(() => {
+    //   this.setState({loading:false});
+    // }, 2000);
     if(user) {
+      const desde = this.props.location.state
+      const ruta=desde?desde.desde.pathname:'/dashboard';
       this.context.login(JSON.parse(user));
-      this.props.history.push('/dashboard')
+      this.props.history.push(ruta)
+    }else{
+      this.setState({loading:false});
     }
     
   }

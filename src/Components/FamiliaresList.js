@@ -51,6 +51,14 @@ function EjemploLista(props){
           // maxWidth:'200px',
           wrap: true,
         },
+        {
+            cell: row =><IconButton 
+            class="btn btn-primary"
+            // onClick={handleClickOpen}
+            onClick={()=>{props.getAlimento(row)}}>
+            <EditIcon />
+            </IconButton>
+        }
         // {
         //     cell:()=><button className="btn btn-danger"> INACTIVO</button>
         // }
@@ -63,8 +71,20 @@ function EjemploLista(props){
         <>
         {/* <Button>Agregar</Button> */}
         {/* <Button>Exportar</Button> */}
-        <DataTable
-            title="Familiar"
+        <div className="card">
+            <div className="card-header">
+                <div className="d-flex justify-content-between">
+                    <div>
+                        DAVILA CRACK!
+            </div>
+                    <div>
+                        <Button onClick={() => { props.abrirModal() }} variant="contained" color="secondary">Agregar</Button>
+                    </div>
+                </div>
+            </div>
+            <div className="card-body">
+            <DataTable
+            noHeader={true}
             data={props.data}
             // subHeaderWrap
             // responsive
@@ -75,6 +95,8 @@ function EjemploLista(props){
             columns={columnasTable}
             pagination
         />
+            </div>
+        </div>
         </>
     );
 }
