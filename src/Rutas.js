@@ -5,6 +5,7 @@ import Dashboard from './Views/Menu/Dashboard'
 import Man_Familiar from './Views/Mantenedores/Man_Familiar'
 // import Man_Alimento from './Views/Mantenedores/Man_Alimento'
 import ManTest from './Views/Mantenedores/ManTest'
+import MaterialTableDemo from './Components/listpruebita'
 
 import Ejemplo from './Views/Ejemplo'
 
@@ -22,6 +23,7 @@ class Rutas extends Component {
               <Route exact path="/manFamiliar" component={Man_Familiar} />
               {/* <Route exact path="/manAlimento" component={Man_Alimento} /> */}
               <Route exact path="/manAlimento" component={ManTest} />
+              <Route exact path="/listPruebita" component={MaterialTableDemo} />
             </Switch>
           </Dashboard>
         </Switch>

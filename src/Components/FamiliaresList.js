@@ -55,7 +55,7 @@ function EjemploLista(props){
             cell: row =><IconButton 
             class="btn btn-primary"
             // onClick={handleClickOpen}
-            onClick={()=>{props.getAlimento(row)}}>
+            onClick={()=>{props.listFamiliar(row)}}>
             <EditIcon />
             </IconButton>
         }

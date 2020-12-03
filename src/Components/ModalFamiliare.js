@@ -1,43 +1,56 @@
 import React from 'react'
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, Select, MenuItem,Divider } from '@material-ui/core'
+
 
 function ModalFamiliares(props) {
+  console.log("sexo", props.familiar.sexo);
     return (
       <Dialog open={props.open} onClose={props.openOrCloseModal} 
               aria-labelledby="form-dialog-title"
               fullWidth={true}
-              maxWidth = {'sm'} >
+              maxWidth = {'lg'} >
         <DialogTitle id="form-dialog-title">
           {props.isEdit ? 'EDITAR ALIMENTO' : 'NUEVO ALIMENTO'}
         </DialogTitle>
         <DialogContent>
-          <form onSubmit={props.handleSubmit}>
-            <input type="text" placeholder="Nombre De Comida" className="form-control" name="nombre" value={props.alimento.nombre} onChange={props.handleChange} required />
+          <form>
+            <input type="text" name="nombres" className="form-control" value={props.familiar.nombres}/>
             <br/>
-            <textarea placeholder="Ingredientes" className="form-control" name="ingredientes" value={props.alimento.ingredientes} onChange={props.handleChange} rows="8" required />
+            <input type="text" name="apellido_paterno" className="form-control" value={props.familiar.apellido_paterno}/>
             <br/>
-            <textarea placeholder="Preparacion" className="form-control" name="preparacion" value={props.alimento.preparacion} onChange={props.handleChange} rows="8" required />
+            <input type="text" name="apellido_materno" className="form-control" value={props.familiar.apellido_materno}/>
             <br/>
-            <select className="form-control" value={props.alimento.edad_rango} onChange={props.handleChange} name="edad_rango" required>
-                <option value=''>-----SELECCIONE-----</option>
-                {props.edadrango.map((item, key) => (<option key={key} value={item.idrango_edad}>{item.descripcion}</option>))}
-              </select>
+            <input type="text" name="dni" className="form-control" value={props.familiar.dni}/>
+            <label className="radio-inline"><input type="radio" name="sexo" value={props.familiar.sexo} checked={props.familiar.sexo=="M"}/>Masculino</label>
+            <label className="radio-inline" style={{margin:"20px"}}><input type="radio" name="sexo" value={props.familiar.sexo} checked={props.familiar.sexo=="F"}/>Femenino</label>
+            <Divider/>
             <br/>
-            <input type="file" className="form-control" placeholder="Agregue Imagen" name="ruta" value={props.imgruta} onChange={props.handleChangeImage}/>
-            <br/>
-            <select className="form-control" value={props.alimento.tipoalimento} onChange={props.handleChange} name="tipoalimento" required>
-              <option value=''>-----SELECCIONE-----</option>
-              <option value={1}>Desayuno</option>
-              <option value={2}>Almuerzo</option>
-              <option value={3}>Cena</option>
-            </select>
-            <br/>
-              <select className="form-control" value={props.alimento.idtipo_anemia_FK} onChange={props.handleChange} name="idtipo_anemia_FK" required>
-                <option value=''>-----SELECCIONE-----</option>
-                {props.typeAnemia.map((item, key) => (<option key={key} value={item.idtipo_anemia}>{item.descripcion}</option>))}
-              </select>
+            <label class="checkbox-inline"><input type="checkbox" value="" checked/>Desea editar algún hijo?</label>
+              <table className="table hidden">
+              <tr>
+                  <th>Name</th>
+                  <th>Apellido Paterno</th>
+                  <th>Apellido Materno</th>
+                  <th>Dni</th>
+                  <th>Sexo</th>
+                  <th>Edad</th>
+              </tr>
+            {props.dataHijo.map((hijo)=>
+            <tr>
+                  <td>{hijo.nombres}</td>
+                  <td>{hijo.apellido_paterno}</td>
+                  <td>{hijo.apellido_materno}</td>
+                  <td>{hijo.dni}</td>
+                  <td>{hijo.sexo}</td>
+                  <td>{hijo.edad}</td>
+              </tr>
+              
+              
+              )}
+              </table>
             <DialogActions>
-              <input type="button" className="btn btn-secondary" onClick={props.openOrCloseModal} value="Cancelar" />
-              <input type="submit" className="btn btn-primary" value={props.isEdit ? 'Editar' : 'Guardar'} />
+              <input type="button" className="btn btn-secondary"  value="Cancelar" />
+              <input type="submit" className="btn btn-primary"  />
             </DialogActions>
           </form>
         </DialogContent>

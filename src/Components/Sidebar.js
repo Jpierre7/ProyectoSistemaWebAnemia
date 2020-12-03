@@ -106,6 +106,8 @@ function Sidebar(props) {
                           <ListItemText primary="Usuarios"/>
                         </ListItem>
                         </Link>
+
+                        <Divider/>
             </div>
     );
     const container = window !== undefined ? () => window().document.body : undefined;
