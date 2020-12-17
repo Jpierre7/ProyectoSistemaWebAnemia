@@ -1,7 +1,5 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-
-
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -17,33 +15,24 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+
+
+
 import { forwardRef } from 'react';
-export default function MaterialTableDemo() {
+export default function MaterialTableDemo(props) {
+  console.log(props.dataHijo);
   const [state, setState] = React.useState({
-
-
-    
     columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname' },
-      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
+      { title: 'Apellido Paterno', field: 'apellido_paterno' },
+      { title: 'Apellido Materno', field: 'apellido_materno' },
+      { title: 'Nombres', field: 'nombres' },
+      { title: 'Dni', field: 'dni' },
+      { title: 'Sexo', field: 'sexo' },
+      { title: 'Edad', field: 'edad' },
     ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
+    data: props.data,
   });
-
+  console.log(state.data);
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -69,7 +58,7 @@ export default function MaterialTableDemo() {
       title="Editable Example"
       icons={tableIcons}
       columns={state.columns}
-      data={state.data}
+      data={props.dataHijo}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {

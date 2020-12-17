@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import FamiliaresList from "../../Components/FamiliaresList"
 import ModalFamiliare from "../../Components/ModalFamiliare"
+import MaterialTableDemo from "../../Components/listpruebita"
 class Man_Familiar extends Component{
   state = {
     data: [],
@@ -76,8 +77,9 @@ getAlimento = (familiar) => {
 
   getHijos = async (familiar) =>{
     
-    console.log("fAMILIAR", familiar)
+    //console.log("fAMILIAR", familiar)
     const response = await fetch('https://tesisanemia.000webhostapp.com/TesisAnemia2/JSonListHijo.php?idfamiliar_FK='+familiar.idfamiliar);
+    //const response = await fetch('https://tesisanemia.000webhostapp.com/TesisAnemia2/JSonListHijo.php?idfamiliar_FK=1');
     const dataHijo = await response.json();
     console.log("dadvgfdgfdgftaa", dataHijo)
     this.setState({dataHijo})
@@ -85,6 +87,7 @@ getAlimento = (familiar) => {
 
   componentDidMount(){
     this.getFamiliares();
+    //this.getHijos(familiar);
   }
 
   render(){
@@ -93,6 +96,7 @@ getAlimento = (familiar) => {
     
     return(
       <>
+        <MaterialTableDemo dataHijo={dataHijo || []} />
         <FamiliaresList data={data || []} 
         listFamiliar={this.getAlimento}
         abrirModal={this.openOrCloseModal}/>
@@ -102,6 +106,7 @@ getAlimento = (familiar) => {
               openOrCloseModal={this.CloseModal}
               familiar={this.state.familiar}
         />
+        
       </>
     )
   }

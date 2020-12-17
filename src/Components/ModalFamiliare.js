@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, InputLabel, Select, MenuItem,Divider } from '@material-ui/core'
-
+import MaterialTableDemo from "../Components/listpruebita";
 
 function ModalFamiliares(props) {
   console.log("sexo", props.familiar.sexo);
@@ -26,28 +26,12 @@ function ModalFamiliares(props) {
             <Divider/>
             <br/>
             <label class="checkbox-inline"><input type="checkbox" value="" checked/>Desea editar algún hijo?</label>
-              <table className="table hidden">
-              <tr>
-                  <th>Name</th>
-                  <th>Apellido Paterno</th>
-                  <th>Apellido Materno</th>
-                  <th>Dni</th>
-                  <th>Sexo</th>
-                  <th>Edad</th>
-              </tr>
-            {props.dataHijo.map((hijo)=>
-            <tr>
-                  <td>{hijo.nombres}</td>
-                  <td>{hijo.apellido_paterno}</td>
-                  <td>{hijo.apellido_materno}</td>
-                  <td>{hijo.dni}</td>
-                  <td>{hijo.sexo}</td>
-                  <td>{hijo.edad}</td>
-              </tr>
               
+            {/* {props.dataHijo.map((hijo)=> */}
+          
               
-              )}
-              </table>
+              <MaterialTableDemo dataHijo={props.dataHijo || []} />
+
             <DialogActions>
               <input type="button" className="btn btn-secondary"  value="Cancelar" />
               <input type="submit" className="btn btn-primary"  />
